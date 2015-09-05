@@ -33,11 +33,16 @@ var utilities = angular.module('ionic.utils', [])
 })
 
 .controller('HomeTabCtrl', function($scope, $rootScope, $ionicPopup) {
-	$rootScope.fetchData = function fetchData(){
+	$rootScope.fetchData = function fetchData(values){
 		/*
 		$.getJSON("https://api.particle.io/v1/devices/54ff71066672524822431867/fsrFront?access_token=9d50c1974fcd10ee28054c9d2e663ed76016997f", function(data) {
 		if (data.result !== NaN){
-			return data.result;
+			if(values){
+				return "asdfasdf";
+			}
+			else{
+				return data.result;
+			}
 		}
 	});
 	*/
@@ -53,6 +58,10 @@ var utilities = angular.module('ionic.utils', [])
 			}
 		}
 	};
+
+	$rootScope.values = function values(){
+		return $rootScope.fetchData(true);
+	}
 });
 
 //save data from adding classes

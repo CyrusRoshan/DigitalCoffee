@@ -53,9 +53,18 @@
 			<ion-view view-title="Home">
 				<ion-content class="padding">
 					<img src="img/logo.png" class="logo">
-					<div class="card">
+					<div class="card" ng-class="status(true)">
+						<div class="item item-divider">
+							Current Status:
+						</div>
 						<div class="item item-text-wrap">
-							{{status()}}
+							{{status(false)}}
+						</div>
+						<div class="item item-divider">
+							Raw Data:
+						</div>
+						<div class="item item-text-wrap">
+							{{values()}}
 						</div>
 					</div>
 				</ion-content>
