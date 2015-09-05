@@ -1,0 +1,63 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "Cyrus Roshan",
+    "longName": "Digital Coffee",
+    "projectType": "pebblejs",
+    "resources": {
+        "media": [
+            {
+                "file": "images/menu_icon.png",
+                "name": "IMAGE_MENU_ICON",
+                "type": "png"
+            },
+            {
+                "file": "images/logo_splash.png",
+                "name": "IMAGE_LOGO_SPLASH",
+                "type": "png"
+            },
+            {
+                "file": "images/tile_splash.png",
+                "name": "IMAGE_TILE_SPLASH",
+                "type": "png"
+            },
+            {
+                "file": "fonts/UbuntuMono-Regular.ttf",
+                "name": "MONO_FONT_14",
+                "type": "font"
+            },
+            {
+                "file": "images/logoMenu.png",
+                "menuIcon": true,
+                "name": "IMAGES_LOGOMENU_PNG",
+                "type": "png"
+            },
+            {
+                "file": "images/logoMini.png",
+                "name": "IMAGES_LOGOMINI_PNG",
+                "type": "png"
+            },
+            {
+                "file": "images/logoLarge.png",
+                "name": "IMAGES_LOGOLARGE_PNG",
+                "type": "png"
+            },
+            {
+                "file": "images/logoSmall.png",
+                "name": "IMAGES_LOGOSMALL_PNG",
+                "type": "png"
+            }
+        ]
+    },
+    "sdkVersion": "3",
+    "shortName": "Digital Coffee",
+    "uuid": "6edf701c-d32a-4989-9242-8cdfddd6f339",
+    "versionCode": 1,
+    "versionLabel": "1.0",
+    "watchapp": {
+        "hiddenApp": false,
+        "watchface": false
+    }
+}
