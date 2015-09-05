@@ -51,11 +51,11 @@
 
 		<script id="templates/home.html" type="text/ng-template">
 			<ion-view view-title="Home">
-				<ion-content class="padding" ng-controller="homeCtrl">
+				<ion-content class="padding">
 					<img src="img/logo.png" class="logo">
 					<div class="card">
 						<div class="item item-text-wrap">
-							{{alert.displayStatus}}
+							{{status()}}
 						</div>
 					</div>
 				</ion-content>

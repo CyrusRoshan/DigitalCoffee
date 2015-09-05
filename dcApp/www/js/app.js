@@ -32,8 +32,27 @@ var utilities = angular.module('ionic.utils', [])
 
 })
 
-.controller('HomeTabCtrl', function($scope, $ionicModal, $rootScope, $ionicPopup) {
+.controller('HomeTabCtrl', function($scope, $rootScope, $ionicPopup) {
+	$rootScope.fetchData = function fetchData(){
+		/*
+		$.getJSON("https://api.particle.io/v1/devices/54ff71066672524822431867/fsrFront?access_token=9d50c1974fcd10ee28054c9d2e663ed76016997f", function(data) {
+		if (data.result !== NaN){
+			return data.result;
+		}
+	});
+	*/
+		return "asdf";}
 
+	$rootScope.status = function status(raw){
+		if(raw){
+			return $rootScope.fetchData();
+		}
+		else{
+			if($rootScope.fetchData() == "asdf"){
+				return "test test";
+			}
+		}
+	};
 });
 
 //save data from adding classes
