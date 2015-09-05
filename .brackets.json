@@ -2,6 +2,7 @@
     "jscodehints.detectedExclusions": [
         "/Users/CyrusRoshan/GitHub/Mine/DigitalCoffee/dcApp/platforms/android/build/intermediates/assets/release/www/plugins/com.ionic.keyboard/www/keyboard.js",
         "/Users/CyrusRoshan/GitHub/Mine/DigitalCoffee/dcApp/platforms/android/build/intermediates/assets/release/www/plugins/cordova-plugin-console/www/console-via-logger.js",
-        "/Users/CyrusRoshan/GitHub/Mine/DigitalCoffee/dcApp/www/js/doesStuff.js"
+        "/Users/CyrusRoshan/GitHub/Mine/DigitalCoffee/dcApp/www/js/doesStuff.js",
+        "/Users/CyrusRoshan/GitHub/Mine/DigitalCoffee/dcApp/platforms/android/build/intermediates/assets/release/www/plugins/cordova-plugin-inappbrowser/www/inappbrowser.js"
     ]
 }
