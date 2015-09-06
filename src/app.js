@@ -5,7 +5,7 @@ var ajax = require('ajax');
 
 var rawLeft;
 var rawRight;
-var alertStatus = "Loading...";
+var alertStatus;
 //var heartRate = "Loading...";
 
 var leftSensorURL = 'https://api.particle.io/v1/devices/400022001447343338333633/leftSensor?access_token=80e4e952b6d84e64327c67f1985844d3e19d5f17';
@@ -50,21 +50,21 @@ function refreshData(){
 	);
 	ajax({url: alertURL, type: 'json'},
 		function(json){
-			if(json.result){
+			if(json.result == "true" || json.result || json.result == "True"){
 				alertStatus = "WAKE UP!";
-				Vibe.vibrate('short');
+				Vibe.vibrate('long');
 			}
 			else{
 				alertStatus = "You're awake";	 
 			}
 		}
 	);
-
+    console.log("test");
 	updateData(rawLeft, rawRight, alertStatus);
 }
 
 function updateData(left, right, status){
-	
+	console.log("test2");
 	window.item(0, 1, {
 		title: 'Status:',
 		subtitle: status

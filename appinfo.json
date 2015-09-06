@@ -29,9 +29,8 @@
                 "type": "font"
             },
             {
-                "file": "images/logoMenu.png",
-                "menuIcon": true,
-                "name": "IMAGES_LOGOMENU_PNG",
+                "file": "images/logoSmall.png",
+                "name": "IMAGES_LOGOSMALL_PNG",
                 "type": "png"
             },
             {
@@ -40,13 +39,14 @@
                 "type": "png"
             },
             {
-                "file": "images/logoMini.png",
-                "name": "IMAGES_LOGOMINI_PNG",
+                "file": "images/logoMenu.png",
+                "menuIcon": true,
+                "name": "IMAGES_LOGOMENU_PNG",
                 "type": "png"
             },
             {
-                "file": "images/logoSmall.png",
-                "name": "IMAGES_LOGOSMALL_PNG",
+                "file": "images/logoMini.png",
+                "name": "IMAGES_LOGOMINI_PNG",
                 "type": "png"
             }
         ]
