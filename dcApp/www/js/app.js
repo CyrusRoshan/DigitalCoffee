@@ -1,3 +1,4 @@
+var temp;
 var app = angular.module('ionicApp', ['ionic', 'ionic.utils'])
 var utilities = angular.module('ionic.utils', [])
 
@@ -32,31 +33,50 @@ var utilities = angular.module('ionic.utils', [])
 
 })
 
-.controller('HomeTabCtrl', function($scope, $rootScope, $ionicPopup) {
-	$rootScope.fetchLeft = function fetchLeft(){
-		return $.getJSON("https://api.particle.io/v1/devices/400022001447343338333633/leftSensor?access_token=80e4e952b6d84e64327c67f1985844d3e19d5f17", function(data) {
-			return data.responseJSON.result;
-		});
-	}
+.controller('HomeTabCtrl', function($scope, $interval, $rootScope, $ionicPopup) {
 
-	$rootScope.fetchRight = function fetchRight(){
-		return $.getJSON("https://api.particle.io/v1/devices/400022001447343338333633/rightSensor?access_token=80e4e952b6d84e64327c67f1985844d3e19d5f17", function(data) {
-			return data.responseJSON.result;
-		});
-	}
+	$interval(fetchData, 100);
 
-	$rootScope.fetchAlert = function fetchAlert(){
-		return $.getJSON("https://api.particle.io/v1/devices/400022001447343338333633/alert?access_token=80e4e952b6d84e64327c67f1985844d3e19d5f17", function(data) {
-			return data.responseJSON.result;
+	function fetchData(){
+		jQuery.ajax({
+			url: "https://api.particle.io/v1/devices/400022001447343338333633/leftSensor?access_token=80e4e952b6d84e64327c67f1985844d3e19d5f17",
+			type: "GET",
+			dataType: "json",
+			async: true,
+			success: function (data) {
+				$rootScope.leftTemp = (JSON.parse(JSON.stringify(data)).result);
+			}
 		});
+
+		jQuery.ajax({
+			url: "https://api.particle.io/v1/devices/400022001447343338333633/rightSensor?access_token=80e4e952b6d84e64327c67f1985844d3e19d5f17",
+			type: "GET",
+			dataType: "json",
+			async: true,
+			success: function (data) {
+				$rootScope.rightTemp = (JSON.parse(JSON.stringify(data)).result);
+			}
+		});
+
+		jQuery.ajax({
+			url: "https://api.particle.io/v1/devices/400022001447343338333633/alert?access_token=80e4e952b6d84e64327c67f1985844d3e19d5f17",
+			type: "GET",
+			dataType: "json",
+			async: true,
+			success: function (data) {
+				$rootScope.alertTemp = (JSON.parse(JSON.stringify(data)).result);
+			}
+		});
+
+		return;
 	}
 
 	$rootScope.status = function status(raw){
 		if(raw){
-			return $rootScope.fetchAlert();
+			return $rootScope.alertTemp;
 		}
 		else{
-			if($rootScope.fetchAlert()){
+			if($rootScope.alertTemp){
 				return "Wake up!";
 			}
 			else{

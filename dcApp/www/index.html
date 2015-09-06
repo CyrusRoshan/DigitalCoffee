@@ -57,14 +57,14 @@
 						<div class="item item-divider">
 							Current Status:
 						</div>
-						<div class="item item-text-wrap">
+						<div class="item item-text-wrap" ng-class="{true: 'yesAlert', false: 'noAlert'}[$root.alertTemp]">
 							{{status(false)}}
 						</div>
 						<div class="item item-divider">
 							Raw Data:
 						</div>
 						<div class="item item-text-wrap">
-							Left: {{fetchLeft()}}, Right: {{fetchLeft()}}
+							Left: {{leftTemp}}, Right: {{rightTemp}}
 						</div>
 					</div>
 				</ion-content>

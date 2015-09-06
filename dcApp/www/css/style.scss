@@ -447,6 +447,13 @@ ion-nav-view ion-view ion-content{
 	margin-left: 30%;
 	margin-right: 30%;
 }
+
+.noAlert{
+	background-color: rgba(0, 128, 0, 0.24);
+}
+.yesAlert{
+	background-color: rgba(128, 0, 0, 0.24);
+}
 /*
 .platform-android{
 .addClassButton{
