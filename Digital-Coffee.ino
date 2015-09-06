@@ -9,12 +9,12 @@ void receiveEvent(int howMany){
 	if(howMany == 3){
 		Serial.println("-------------------");
 		char c = Wire.read();
-		leftSensor = c;
+		rightSensor = c;
 		Serial.print("Sensor 1: ");
 		Serial.println(c, DEC);
 
 		c = Wire.read();
-		rightSensor = c;
+		leftSensor = c;
 		Serial.print("Sensor 2: ");
 		Serial.println(c, DEC);
 
