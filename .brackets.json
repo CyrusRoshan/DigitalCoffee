@@ -6,6 +6,7 @@
         "/Users/CyrusRoshan/GitHub/Mine/DigitalCoffee/dcApp/platforms/android/build/intermediates/assets/release/www/plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
         "/Users/CyrusRoshan/GitHub/Mine/DigitalCoffee/dcApp/platforms/android/build/intermediates/assets/release/www/lib/ionic/js/angular-ui/angular-ui-router.min.js",
         "/Users/CyrusRoshan/GitHub/Mine/DigitalCoffee/dcApp/platforms/android/build/intermediates/assets/release/www/plugins/cordova-plugin-whitelist/whitelist.js",
-        "/Users/CyrusRoshan/GitHub/Mine/DigitalCoffee/dcApp/platforms/android/cordova/lib/android_sdk_version.js"
+        "/Users/CyrusRoshan/GitHub/Mine/DigitalCoffee/dcApp/platforms/android/cordova/lib/android_sdk_version.js",
+        "/Users/CyrusRoshan/GitHub/Mine/DigitalCoffee/dcApp/platforms/android/build/intermediates/assets/release/www/lib/ionic/js/ionic.min.js"
     ]
 }

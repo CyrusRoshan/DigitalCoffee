@@ -2,6 +2,7 @@
 
 #include <Wire.h>
 /////////////////
+unsigned long tempTime;
 
 int sensorValue1 = 0;
 int sensorValue2 = 0;
@@ -35,6 +36,7 @@ void setup() {
 	Serial.begin(9600);
 	pinMode(3, OUTPUT);
 	pinMode(5, OUTPUT);
+	pinMode(9, OUTPUT);
 	pinMode(button, INPUT);
 
 	while(buttonPushCounter < 2){
@@ -74,9 +76,9 @@ void setup() {
 		}
 		lastButtonState = buttonState;
 	}
-	changeThreshold1 = (sensorCalibrateOPEN1 - sensorCalibrateCLOSE1)/2;
+	changeThreshold1 = 20;//(sensorCalibrateOPEN1 - sensorCalibrateCLOSE1)/2;
 	changeThreshold1 = abs(changeThreshold1);
-	changeThreshold2 = (sensorCalibrateOPEN2 - sensorCalibrateCLOSE2)/2;
+	changeThreshold2 = 20;//(sensorCalibrateOPEN2 - sensorCalibrateCLOSE2)/2;
 	changeThreshold2 = abs(changeThreshold2);
 }
 
@@ -86,31 +88,36 @@ void loop() {
 	sensorValue2 = analogRead(A1);
 	calc1 = sensorCalibrateOPEN1 - sensorValue1;
 	calc2 = sensorCalibrateOPEN2 - sensorValue2;
-	change1 = abs(calc1);
-	change2 = abs(calc2);
+	change1 = calc1;//abs(calc1);
+	change2 = calc2;//abs(calc2);
 
-	while (change1 >= changeThreshold1 && change2 >=changeThreshold2){
-		digitalWrite(3, HIGH);
-		digitalWrite(5, HIGH);
-		sensorValue1 = analogRead(A0);
-		sensorValue2 = analogRead(A1);
-		calc1 = sensorCalibrateOPEN1 - sensorValue1;
-		calc2 = sensorCalibrateOPEN2 - sensorValue2;
-		change1 = abs(calc1);
-		change2 = abs(calc2);
-
-
-
-		Wire.beginTransmission(100);
-		Wire.write(sensorValue1);
-		Wire.write(sensorValue2);
-		Wire.write(1);
-		Wire.endTransmission();
+	if (change1 >= changeThreshold1 && change2 >=changeThreshold2){
+		tempTime = millis();
+		while (change1 >= changeThreshold1 && change2 >=changeThreshold2){
+			if(millis() > tempTime + 1000){
+				digitalWrite(3, HIGH);
+				digitalWrite(5, HIGH);
+				digitalWrite(9, HIGH);
+				sensorValue1 = analogRead(A0);
+				sensorValue2 = analogRead(A1);
+				calc1 = sensorCalibrateOPEN1 - sensorValue1;
+				calc2 = sensorCalibrateOPEN2 - sensorValue2;
+				change1 = abs(calc1);
+				change2 = abs(calc2);
 
 
+
+				Wire.beginTransmission(100);
+				Wire.write(sensorValue1);
+				Wire.write(sensorValue2);
+				Wire.write(1);
+				Wire.endTransmission();
+			}
+		}
 	}
 	digitalWrite(3,LOW);
 	digitalWrite(5,LOW);
+	digitalWrite(9,LOW);
 
 	Wire.beginTransmission(100);
 	Wire.write(sensorValue1);
@@ -119,5 +126,5 @@ void loop() {
 	Wire.endTransmission();
 
 
-	delay(100);        // delay in between reads for stability
+	delay(100);
 }

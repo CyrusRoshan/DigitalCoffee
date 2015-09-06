@@ -23,7 +23,8 @@ var utilities = angular.module('ionic.utils', [])
 		url: "/analytics",
 		views: {
 			'analytics-tab': {
-				templateUrl: "templates/analytics.html"
+				templateUrl: "templates/analytics.html",
+				controller: 'AnalyticsTabCtrl'
 			}
 		}
 	});
@@ -35,7 +36,7 @@ var utilities = angular.module('ionic.utils', [])
 
 .controller('HomeTabCtrl', function($scope, $interval, $rootScope, $ionicPopup) {
 
-	$interval(fetchData, 100);
+	$interval(fetchData, 500);
 
 	function fetchData(){
 		jQuery.ajax({
@@ -84,4 +85,53 @@ var utilities = angular.module('ionic.utils', [])
 			}
 		}
 	}
+})
+
+.controller('AnalyticsTabCtrl', function($scope, $interval, $rootScope, $ionicPopup) {
+
+	/*var chart = $('#chart').epoch({
+		type: 'line',
+		data: $rootScope.data,
+		axes: ['left', 'right', 'bottom']
+	});
+
+	$rootScope.data = [
+		{
+			label: "Left",
+			values: [{time: 0, y: 0}, {time: 10, y: 20},]
+		},
+
+		{
+			label: "Right",
+			values: []
+		},
+	]*/
+
+	//$rootScope.data[0].values.push({time: new Date().getTime(), y: $rootScope.leftTemp});
+
+
+	var data = [{ label: 'A', values: [] }],
+		length = 40,
+		nextIndex = length,
+		playing = false,
+		interval = null;
+	for (var i = 0; i < 1; i++) {
+		var x = i * 2 * Math.PI / length,
+			y = Math.cos(x) + 1,
+			time = new Date().getTime();
+		data[0].values.push({time: time, y: y});
+	}
+	var chart = $('#chart').epoch({
+		type: 'time.line',
+		data: data,
+	});
+	var pushPoint = function() {
+		var x = nextIndex * 2 * Math.PI / length,
+			y = Math.cos(x) + 1,
+			time = new Date().getTime();
+		chart.push([{ time: time, y: $rootScope.leftTemp}]);
+		nextIndex++;
+	};
+	setInterval(pushPoint, 1000);
+
 });
