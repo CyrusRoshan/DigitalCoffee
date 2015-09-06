@@ -10,7 +10,7 @@ var alertStatus = "Loading...";
 
 var leftSensorURL = 'https://api.particle.io/v1/devices/400022001447343338333633/leftSensor?access_token=80e4e952b6d84e64327c67f1985844d3e19d5f17';
 var rightSensorURL = 'https://api.particle.io/v1/devices/400022001447343338333633/rightSensor?access_token=80e4e952b6d84e64327c67f1985844d3e19d5f17';
-var alertURL = 'https://api.particle.io/v1/devices/400022001447343338333633/alertSensor?access_token=80e4e952b6d84e64327c67f1985844d3e19d5f17';
+var alertURL = 'https://api.particle.io/v1/devices/400022001447343338333633/alert?access_token=80e4e952b6d84e64327c67f1985844d3e19d5f17';
 
 
 
