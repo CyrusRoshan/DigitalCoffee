@@ -33,51 +33,35 @@ var utilities = angular.module('ionic.utils', [])
 })
 
 .controller('HomeTabCtrl', function($scope, $rootScope, $ionicPopup) {
-	$rootScope.fetchData = function fetchData(values){
-		/*
-		$.getJSON("https://api.particle.io/v1/devices/54ff71066672524822431867/fsrFront?access_token=9d50c1974fcd10ee28054c9d2e663ed76016997f", function(data) {
-		if (data.result !== NaN){
-			if(values){
-				return "asdfasdf";
-			}
-			else{
-				return data.result;
-			}
-		}
-	});
-	*/
-		return "asdf";}
+	$rootScope.fetchLeft = function fetchLeft(){
+		return $.getJSON("https://api.particle.io/v1/devices/400022001447343338333633/leftSensor?access_token=80e4e952b6d84e64327c67f1985844d3e19d5f17", function(data) {
+			return data.responseJSON.result;
+		});
+	}
+
+	$rootScope.fetchRight = function fetchRight(){
+		return $.getJSON("https://api.particle.io/v1/devices/400022001447343338333633/rightSensor?access_token=80e4e952b6d84e64327c67f1985844d3e19d5f17", function(data) {
+			return data.responseJSON.result;
+		});
+	}
+
+	$rootScope.fetchAlert = function fetchAlert(){
+		return $.getJSON("https://api.particle.io/v1/devices/400022001447343338333633/alert?access_token=80e4e952b6d84e64327c67f1985844d3e19d5f17", function(data) {
+			return data.responseJSON.result;
+		});
+	}
 
 	$rootScope.status = function status(raw){
 		if(raw){
-			return $rootScope.fetchData();
+			return $rootScope.fetchAlert();
 		}
 		else{
-			if($rootScope.fetchData() == "asdf"){
-				return "test test";
+			if($rootScope.fetchAlert()){
+				return "Wake up!";
+			}
+			else{
+				return "You're awake";
 			}
 		}
-	};
-
-	$rootScope.values = function values(){
-		return $rootScope.fetchData(true);
 	}
 });
-
-//save data from adding classes
-utilities.factory('$localstorage', ['$window', function($window) {
-	return {
-		set: function(key, value) {
-			$window.localStorage[key] = value;
-		},
-		get: function(key, defaultValue) {
-			return $window.localStorage[key] || defaultValue;
-		},
-		setObject: function(key, value) {
-			$window.localStorage[key] = JSON.stringify(value);
-		},
-		getObject: function(key) {
-			return JSON.parse($window.localStorage[key] || '{}');
-		}
-	}
-}]);

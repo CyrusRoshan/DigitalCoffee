@@ -1,3 +1,6 @@
+#include <Wire.h>
+/////////////////
+
 int sensorValue1 = 0;
 int sensorValue2 = 0;
 int motorPin1 = 3;
@@ -26,7 +29,7 @@ int sensorCalibrateCLOSE1;
 int sensorCalibrateCLOSE2;
 
 void setup() {
-	// initialize serial communication at 9600 bits per second:
+	Wire.begin();
 	Serial.begin(9600);
 	pinMode(3, OUTPUT);
 	pinMode(5, OUTPUT);
@@ -40,7 +43,7 @@ void setup() {
 					sensorCalibrateOPEN1 = analogRead(A0);
 					sensorCalibrateOPEN2 = analogRead(A1);
 					Serial.println("Eyes opened and calibrated.");
-					buttonPushCounter=1;
+					buttonPushCounter++;
 					delay(500);
 
 					Serial.println("Sensor 1 open eye value:  ");
@@ -57,7 +60,7 @@ void setup() {
 					sensorCalibrateCLOSE1 = analogRead(A0);
 					sensorCalibrateCLOSE2 = analogRead(A1);
 					Serial.println("Eyes closed and calibrated.");
-					buttonPushCounter=1;
+					buttonPushCounter++;
 					delay(500);
 
 					Serial.println("Sensor 1 close eye value:  ");
@@ -93,9 +96,25 @@ void loop() {
 		calc2 = sensorCalibrateOPEN2 - sensorValue2;
 		change1 = abs(calc1);
 		change2 = abs(calc2);
+
+
+
+		Wire.beginTransmission(100);
+		Wire.write(sensorValue1);
+		Wire.write(sensorValue2);
+		Wire.write(1);
+		Wire.endTransmission();
+
+
 	}
 	digitalWrite(3,LOW);
 	digitalWrite(5,LOW);
+
+	Wire.beginTransmission(100);
+	Wire.write(sensorValue1);
+	Wire.write(sensorValue2);
+	Wire.write(0);
+	Wire.endTransmission();
 
 
 	delay(100);        // delay in between reads for stability
