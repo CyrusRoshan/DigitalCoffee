@@ -3,14 +3,14 @@ var UI = require('ui');
 var Vibe = require('ui/vibe');
 var ajax = require('ajax');
 
-var lTrigger = 100;
-var rTrigger = 100;
 var rawLeft;
 var rawRight;
 var alertStatus = "Loading...";
 //var heartRate = "Loading...";
 
-var URL = 'http://api.openweathermap.org/data/2.5/weather?q=London,uk';
+var leftSensorURL = 'https://api.particle.io/v1/devices/400022001447343338333633/leftSensor?access_token=80e4e952b6d84e64327c67f1985844d3e19d5f17';
+var rightSensorURL = 'https://api.particle.io/v1/devices/400022001447343338333633/rightSensor?access_token=80e4e952b6d84e64327c67f1985844d3e19d5f17';
+var alertURL = 'https://api.particle.io/v1/devices/400022001447343338333633/alertSensor?access_token=80e4e952b6d84e64327c67f1985844d3e19d5f17';
 
 
 
@@ -38,33 +38,40 @@ window.show();
 setInterval(refreshData, 500);
 
 function refreshData(){
-	ajax({url: URL, type: 'json'},
+	ajax({url: leftSensorURL, type: 'json'},
 		function(json){
-			updateData();
-			rawLeft = json.weather[0].main;
-			rawRight = json.weather[0].main;
-			if(rawLeft > lTrigger && rawRight > rTrigger){
-				Vibe.vibrate('short');
+			rawLeft = json.result;
+		}
+	);
+	ajax({url: rightSensorURL, type: 'json'},
+		function(json){
+			rawRight = json.result;
+		}
+	);
+	ajax({url: alertURL, type: 'json'},
+		function(json){
+			if(json.result){
 				alertStatus = "WAKE UP!";
+				Vibe.vibrate('short');
 			}
 			else{
 				alertStatus = "You're awake";	 
 			}
-		},function(error) {
-				Vibe.vibrate('long');
 		}
 	);
+
+	updateData(rawLeft, rawRight, alertStatus);
 }
 
 function updateData(left, right, status){
 	
 	window.item(0, 1, {
 		title: 'Status:',
-		subtitle: alertStatus
+		subtitle: status
 	});
 	window.item(0, 2, {
 		title: 'Values (L, R):',
-		subtitle: 'L:' + rawLeft + ' R:' + rawRight
+		subtitle: 'L:' + left + ' R:' + right
 	});
 	/*window.item(0, 3, {
 		title: 'Heart Rate:',
